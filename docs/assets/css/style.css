@@ -9,8 +9,10 @@ body {
   height: 100%;
   background-color: transparent;
   background-image: url("../images/bg_texture4.jpeg");
-  background-repeat: repeat-x;
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
   --mat-stepper-container-color: none;
   --mat-sidenav-content-background-color: none;
   --mat-toolbar-container-background-color: none;
@@ -32,12 +34,10 @@ body {
 
 .logo-part-1 {
   color: #fbc02d;
-  font-size: 4rem;
 }
 
 .logo-part-2 {
   color: #222222;
-  font-size: 4rem;
 }
 
 .btn-examatics-primary {
@@ -46,6 +46,24 @@ body {
   border: none;
 }
 .btn-examatics-primary:hover {
+  background-color: #616161;
+}
+
+.btn-examatics-secondary {
+  background-color: #616161;
+  color: #fff;
+  border: none;
+}
+.btn-examatics-secondary:hover {
+  background-color: #fbc02d;
+}
+
+.btn-examatics-clear {
+  background-color: transparent;
+  color: #222222;
+  border: none;
+}
+.btn-examatics-clear:hover {
   background-color: #fbc02d;
 }
 
@@ -59,6 +77,14 @@ body {
 
 .ex-no-bg {
   background-color: transparent !important;
+}
+
+.nav a {
+  color: #222222;
+}
+
+.ex-clear-bg {
+  background-color: rgba(255, 255, 255, 0.126) !important;
 }
 
 /*# sourceMappingURL=style.css.map */
