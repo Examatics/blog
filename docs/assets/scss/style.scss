@@ -1,7 +1,8 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
 
 $primary: #fbc02d;
-$subtle-bg-yellow:#fbc02d73;
+$secondary: #616161;
+$subtle-bg-yellow: #fbc02d73;
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -14,8 +15,13 @@ body {
   height: 100%;
   background-color: transparent;
   background-image: url("../images/bg_texture4.jpeg");
-  background-repeat: repeat-x;
-  background-size: cover;
+  // background-repeat: repeat-x;
+  // background-size: cover;
+    background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+
   --mat-stepper-container-color: none;
   --mat-sidenav-content-background-color: none;
   --mat-toolbar-container-background-color: none;
@@ -39,31 +45,58 @@ body {
   height: 100%;
   background-color: transparent !important;
   background: transparent;
- 
 }
 .logo-part-1 {
   color: #fbc02d; //#d3c204;// #ffeb3b;
-  font-size: 4rem;
+ 
 }
 .logo-part-2 {
   color: #222222;
-  font-size: 4rem;
+  
 }
 .btn-examatics-primary {
   background-color: $primary;
   color: #fff;
   border: none;
-
+  &:hover {
+    background-color: $secondary;
+  }
+  // margin-top: 1rem;
+}
+.btn-examatics-secondary {
+  background-color: $secondary;
+  color: #fff;
+  border: none;
   &:hover {
     background-color: $primary;
   }
+  // margin-top: 1rem;
+
 }
-.ex-subtle-bg{
+.btn-examatics-clear {
+  background-color: transparent;
+  color: #222222;
+  border: none;
+  &:hover {
+    background-color: $primary;
+  }
+  // margin-top: 1rem;
+
+}
+.ex-subtle-bg {
   background-color: $subtle-bg-yellow !important;
 }
-.ex-strong-bg{
+.ex-strong-bg {
   background-color: $primary !important;
 }
-.ex-no-bg{
+.ex-no-bg {
   background-color: transparent !important;
+}
+.nav{
+  a{
+    color: #222222;
+  }
+}
+.ex-clear-bg{
+  background-color: rgba(255, 255, 255, 0.126);
 }
