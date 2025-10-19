@@ -54,6 +54,10 @@ a:hover {
   background-color: transparent !important;
   background: transparent;
 }
+.container-fluid{
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .logo-part-1 {
   color: #fbc02d; //#d3c204;// #ffeb3b;
  
