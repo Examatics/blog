@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Features | Examatics - AI-Powered Prep for Competitive, Government & Entrance Exams</title>
+
+    <meta name="description"
+        content="Prepare for school, college, government, and entrance exams with Examatics—an AI-driven platform for custom test creation, smart analytics, and ethical student support.">
+
+    <meta name="keywords"
+        content="AI exam generator, competitive exam prep, government exam practice, entrance exam preparation, personalized test builder, adaptive learning platform, smart test recommendations, secure online testing, ethical AI in education">
+
+    <meta name="author" content="Examatics Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Examatics | AI-Powered Prep for Competitive, Government & Entrance Exams">
+    <meta property="og:description"
+        content="AI-driven platform for custom test creation, smart analytics, and ethical student support.">
+    <meta property="og:url" content="https://www.examatics.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.examatics.com/assets/images/logo-new1.jpg">
+    <!-- Replace with actual image URL -->
+
+    <!-- Favicon -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.15/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Include html2canvas via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+
+    <script>
+        function takeScreenshot() {
+            const element = document.getElementById('capture'); // Your target HTML block      
+            document.getElementById('main-label').innerText = document.getElementById('main-text').value || "एकाधिकेन पूर्वेण";
+            document.getElementById('sub-label').innerText = document.getElementById('sub-text').value || "Ekādhikena Pūrvena";
+            document.getElementById('desc-label').innerText = document.getElementById('desc-text').value || "- By one more than the previous one";
+            setTimeout(() => {
+                html2canvas(element, {
+                    width: 1550,
+                    height: 1700,
+                }).then(canvas => {
+                    const container = document.getElementById('canvasContainer');
+                    container.innerHTML = ''; // Clear previous canvas
+                    container.appendChild(canvas);
+                    const canvasWidth = canvas.width;
+                    const canvasHeight = canvas.height;
+
+                    // Display dimensions somewhere in your UI
+                    document.getElementById('dimensionLabel').innerText = `Image size: ${canvasWidth} × ${canvasHeight}px`;
+                    // Show modal
+                    const modal = new bootstrap.Modal(document.getElementById('screenshotModal'));
+                    modal.show();
+
+                    // Setup download
+                    document.getElementById('downloadBtn').onclick = () => {
+                        const imageName = document.getElementById('sub-label').innerText;
+                        const link = document.createElement('a');
+                        link.href = canvas.toDataURL('image/png');
+                        link.download = `${imageName}.png`;
+                        link.click();
+                    };
+                });
+
+            }, 500);
+        }
+
+        function recordVideo() {
+            const element = document.getElementById('capture'); // Your target HTML block      
+
+            html2canvas(element, {
+                width: 1080,
+                height: 1350,
+            }).then(canvas => {
+                const container = document.getElementById('canvasContainer');
+                // const canvas = document.getElementById('capture');
+                const stream = canvas.captureStream(30); // 30 FPS
+                const recorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                recorder.ondataavailable = e => chunks.push(e.data);
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'vedic-math-animation.webm';
+                    a.click();
+                };
+
+                recorder.start();
+                setTimeout(() => recorder.stop(), 20000);
+            });
+        }
+
+        let recorder;
+        let recordedChunks = [];
+
+        function startRecording() {
+            const canvas = document.getElementById('capture');
+            const stream = canvas.captureStream(30); // 30 FPS
+
+            recorder = new MediaRecorder(stream);
+            recordedChunks = [];
+
+            recorder.ondataavailable = event => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+
+            recorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'canvas-recording.webm';
+                a.click();
+            };
+
+            recorder.start();
+        }
+
+        function stopRecording() {
+            if (recorder && recorder.state === 'recording') {
+                recorder.stop();
+            }
+        }
+
+        function updateText() {
+            document.getElementById('main-label').innerText = document.getElementById('main-text').value || "एकाधिकेन पूर्वेण";
+            document.getElementById('sub-label').innerText = document.getElementById('sub-text').value || "Ekādhikena Pūrvena";
+            document.getElementById('desc-label').innerText = document.getElementById('desc-text').value || "- By one more than the previous one";
+            document.getElementById('explanation-header-label').innerText = document.getElementById('explanation-header-text').value || "Explanation";
+
+            document.getElementById('step-1-label').innerText = document.getElementById('step-1-text').value;
+            document.getElementById('step-1-sub-label').innerText = document.getElementById('step-1-sub-text').value;
+
+            document.getElementById('step-2-label').innerText = document.getElementById('step-2-text').value;
+            document.getElementById('step-2-sub-label').innerText = document.getElementById('step-2-sub-text').value;
+
+            document.getElementById('step-3-label').innerText = document.getElementById('step-3-text').value;
+            document.getElementById('step-3-sub-label').innerText = document.getElementById('step-3-sub-text').value;
+
+            document.getElementById('step-4-label').innerText = document.getElementById('step-4-text').value;
+            document.getElementById('step-4-sub-label').innerText = document.getElementById('step-4-sub-text').value;
+            if (document.getElementById('step-5-text').value) {
+                document.getElementById('step-5-label').innerText = document.getElementById('step-5-text').value;
+                document.getElementById('step-5-sub-label').innerText = document.getElementById('step-5-sub-text').value;
+            }
+        }
+    </script>
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .btn-screenshot {
+            /* position: absolute;
+            z-index: 5;
+            top: 10px; */
+            display: flex;
+            align-self: center;
+        }
+
+        .control-ribbon {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: scroll;
+
+            .title-text {
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: flex-start;
+                flex: 1;
+                min-width: 150px;
+
+                .form-label {
+                    display: none;
+                }
+            }
+        }
+
+        /* .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow: auto;
+        } */
+
+        .modal-body {
+            overflow: auto;
+        }
+
+        #capture {
+            /* zoom: 60%; */
+            /* position: absolute; */
+            overflow: auto;
+            border: 1px Solid #ddd;
+            background-color: transparent;
+            background-image: url("./assets/images/bg_texture4.jpeg");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 1550px;
+            height: 1700px;
+            margin: 0 auto;
+            padding: 40px 40px 80px 40px;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            border: 1px solid #ccc;
+
+            .footer {
+                border-top: 1px Solid #aaaa;
+                padding: 1% 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 28px;
+            }
+        }
+
+        .dev-header {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            /* font-family: 'Rajdhani', sans-serif; */
+
+            text-align: center;
+            font-size: 78px;
+            display: block;
+            color: #fbc02d;
+            line-height: 1.5;
+
+        }
+
+        .eng-sub {
+            font-style: italic;
+            text-align: center;
+            font-size: 48px;
+            display: block;
+            line-height: 1.5;
+
+
+        }
+
+        .eng-desc {
+            font-size: 32px;
+            display: block;
+            color: #333;
+            font-style: italic;
+            text-transform: lowercase;
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            p {
+                font-style: normal;
+            }
+
+            header {
+                text-transform: capitalize;
+            }
+        }
+
+        .explanation {
+            font-size: 32px;
+            display: block;
+            color: #333;
+            font-style: italic;
+            text-transform: lowercase;
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+
+            p {
+                font-style: normal;
+            }
+
+
+        }
+
+        .explanation-header {
+            text-transform: uppercase;
+            text-align: center;
+            padding-bottom: 42px;
+            font-style: normal;
+        }
+
+        .formula-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 100%;
+        }
+
+        .post-holder {
+            height: 100vh;
+            overflow: auto;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+        .reveal-text {
+            font-size: 40px;
+            /* animation: textReveal 1s ease-out forwards;
+            animation-delay: var(--delay, 0s); */
+
+        } 
+        .txt-com{
+            font-weight: normal;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="d-flex">
+                <h2 class="mb-4">Titles</h2>
+
+                <div class="container mt-4 control-ribbon " style="">
+
+                    <div class="mb-3 title-text">
+                        <label for="main-text" class="form-label">Main Text</label>
+                        <textarea onchange="updateText()" class="form-control" id="main-text"
+                            placeholder="Enter main title" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="sub-text" class="form-label">Sub Text</label>
+                        <textarea onchange="updateText()" class="form-control" id="sub-text"
+                            placeholder="Enter sub title" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="desc-text" class="form-label">Short Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="desc-text"
+                            placeholder="Enter short description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="explanation-header-text" class="form-label">Explanation Header</label>
+                        <textarea onchange="updateText()" class="form-control" id="explanation-header-text"
+                            placeholder="Enter explanation header" rows="2"></textarea>
+                    </div>
+
+                    <!-- Steps 1 to 5 -->
+                    <div class="mb-3 title-text">
+                        <label for="step-1-text" class="form-label">Step 1</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-1-text"
+                            placeholder="Enter step 1 text" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3 title-text">
+                        <label for="step-1-sub-text" class="form-label">Step 1 Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-1-sub-text"
+                            placeholder="Enter step 1 description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="step-2-text" class="form-label">Step 2</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-2-text"
+                            placeholder="Enter step 2 text" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3 title-text">
+                        <label for="step-2-sub-text" class="form-label">Step 2 Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-2-sub-text"
+                            placeholder="Enter step 2 description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="step-3-text" class="form-label">Step 3</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-3-text"
+                            placeholder="Enter step 3 text" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3 title-text">
+                        <label for="step-3-sub-text" class="form-label">Step 3 Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-3-sub-text"
+                            placeholder="Enter step 3 description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="step-4-text" class="form-label">Step 4</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-4-text"
+                            placeholder="Enter step 4 text" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3 title-text">
+                        <label for="step-4-sub-text" class="form-label">Step 4 Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-4-sub-text"
+                            placeholder="Enter step 4 description" rows="2"></textarea>
+                    </div>
+
+                    <div class="mb-3 title-text">
+                        <label for="step-5-text" class="form-label">Step 5</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-5-text"
+                            placeholder="Enter step 5 text" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3 title-text">
+                        <label for="step-5-sub-text" class="form-label">Step 5 Description</label>
+                        <textarea onchange="updateText()" class="form-control" id="step-5-sub-text"
+                            placeholder="Enter step 5 description" rows="2"></textarea>
+                    </div>
+
+                </div>
+                <button class="btn btn-secondary" onclick="takeScreenshot()">Capture</button>
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 post-holder">
+                <div id="capture">
+                    <div class="formula-box">
+                        <div>
+                            <h1 class="dev-header" id="main-label">एकाधिकेन पूर्वेण </h1>
+                            <h2 class="eng-sub" id="sub-label">Ekādhikena Pūrvena</h2>
+                            <div class="eng-desc" id="desc-label">
+                                - By one more than the previous one</br>
+                                <p> </p>
+                            </div>
+                        </div>
+
+                        <div class="explanation">
+                            <h3 class="explanation-header reveal-text" style="--delay: 2s;"
+                                id="explanation-header-label"> Squaring numbers
+                                ending in 5
+                            </h3>
+                            <div class="explanation-details ">
+                                <ol >
+                                    <li class="reveal-text" style="--delay: 4s;">
+                                        <div id="step-1-label"></div>
+                                        <div id="step-1-sub-label"></div>
+                                    </li>
+                                    <li class="reveal-text" style="--delay: 8s;">
+                                        <div id="step-2-label"></div>
+                                        <div id="step-2-sub-label"></div>
+                                    </li>
+                                    <li class=" reveal-text" style="--delay: 12s;">
+                                        <div id="step-3-label"></div>
+                                        <div id="step-3-sub-label"></div </li>
+
+                                    <li class=" reveal-text" style="--delay: 16s;">
+                                        <div id="step-4-label">
+                                        </div>
+                                        <div id="step-4-sub-label"></div </li>
+
+                                    <li class=" reveal-text" style="--delay: 20s;">
+                                        <div id="step-5-label"></div>
+                                        <div id="step-5-sub-label"></div </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="footer animated-footer text-center" style="--delay: 20s;">
+                        <p class="follow-text">📚 Follow for more Vedic Math Sutras!</p>
+                    </div> -->
+                    <div class="footer">
+                        <div class=""> <a href="https://examatics.com"
+                                class="d-inline-flex link-body-emphasis text-decoration-none">
+                                <img src="./assets/images/logo-new1.PNG" alt="Bootstrap" width="48" height="48">
+                                <h1 class="display-6 fw-bold text-body-emphasis"><span
+                                        class="logo-part-1">EXAM</span><span class="logo-part-2">ATICS</span><span class="txt-com">.com</span></h1>
+                            </a> </div>
+                        <div class="follow-text">Follow for more Vedic Math Sutras!</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="screenshotModal" tabindex="-1" aria-labelledby="screenshotLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="screenshotLabel">Screenshot Preview </h5>
+                    <span id="dimensionLabel" class="text-muted mt-2"></span> <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="canvasContainer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button id="downloadBtn" class="btn btn-success">Download Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
