@@ -3,6 +3,7 @@ body {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
+  flex-direction: column;
   -ms-flex-pack: center;
   -webkit-box-pack: center;
   justify-content: center;
@@ -92,7 +93,7 @@ a:hover {
 }
 
 .logo-part-2 {
-  color: #222222;
+  color: #616161;
 }
 
 .btn-examatics-primary {
@@ -179,5 +180,7 @@ footer a {
 .sutra {
   font-size: 1.5rem;
 }
-
+h1{
+  color: #616161;
+}
 /*# sourceMappingURL=style.css.map */
