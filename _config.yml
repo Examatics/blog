@@ -1,0 +1,12 @@
+title: "Examatics Blog"
+description: "Insights on AI-native learning, micro-assessment, and system design."
+baseurl: ""
+url: "https://blog.examatics.com"
+
+theme: null
+markdown: kramdown
+
+permalink: /:title/
+
+exclude:
+  - README.md
