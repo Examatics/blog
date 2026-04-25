@@ -1,0 +1,7 @@
+{% if page.og_image %}
+  <meta property="og:image" content="{{ page.og_image | absolute_url }}">
+{% elsif page.image %}
+  <meta property="og:image" content="{{ page.image | absolute_url }}">
+{% else %}
+  <meta property="og:image" content="{{ '/assets/images/og/default-og.png' | absolute_url }}">
+{% endif %}

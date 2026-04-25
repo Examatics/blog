@@ -182,14 +182,11 @@
   </header>
 
   <!-- ── HERO / BANNER ── -->
-  {% if page.url == "/" or page.url == "" %}
   <section class="hero">
     <div class="hero-inner">
       <p class="hero-tagline">AI-native learning &amp; micro-assessment insights</p>
     </div>
   </section>
-  {% endif %}
-
   <!-- ── MAIN LAYOUT ── -->
   <div class="page-wrap" id="latest">
 
@@ -206,61 +203,13 @@
     </nav>
     {% endunless %}
 
-    <div class="content-grid">
-
-      <!-- ── MAIN CONTENT PANE ── -->
-      <main class="content-pane" {% if page.summary %} data-summary="{{ page.summary | escape }}" {% endif %}>
-        {{ content }}
-      </main>
-
-      <!-- ── RIGHT RAIL — conversational summary + recent articles ── -->
-      <aside class="right-rail">
-
-        <!-- ── CONVERSATIONAL SUMMARY ── -->
-        <div class="conv-summary" id="conv-summary" aria-label="Article summary">
-          <div class="conv-summary__header">
-            <span class="conv-summary__icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-            </span>
-            <h3 class="conv-summary__title">Quick Summary</h3>
-          </div>
-          <div class="conv-summary__body" id="conv-summary__body">
-            <!-- populated by JS from page content -->
-          </div>
-          <div class="conv-summary__read-time" id="conv-summary__read-time"></div>
-        </div>
-
-        <h3 class="rail-title">Recent Articles</h3>
-        <ul class="rail-list">
-          {% for post in site.posts limit:6 %}
-          <li class="rail-item">
-            <a href="{{ post.url }}" class="rail-card">
-              {% if post.image %}
-              <img src="{{ post.image }}" alt="{{ post.title }}" class="rail-thumb">
-              {% else %}
-              <div class="rail-thumb rail-thumb--placeholder"></div>
-              {% endif %}
-              <div class="rail-card-body">
-                <span class="rail-card-title">{{ post.title }}</span>
-                <span class="rail-card-date">{{ post.date | date: "%b %d, %Y" }}</span>
-              </div>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </aside>
-
-    </div><!-- /.content-grid -->
 
     <!-- ── FEATURED / BOTTOM ARTICLES ── -->
     {% if site.posts.size > 0 %}
     <section class="featured-section">
-      <h2 class="section-title">Featured Articles</h2>
+      <h2 class="section-title">All Articles</h2>
       <div class="card-grid">
-        {% for post in site.posts limit:6 %}
+        {% for post in site.posts %}
         <article class="post-card">
           {% if post.image %}
           <img src="{{ post.image }}" alt="{{ post.title }}" class="post-card__image">
@@ -284,13 +233,10 @@
           </div>
         </article>
         {% endfor %}
-
       </div>
     </section>
     {% endif %}
-    <div class="explore-all">
-      <a href="./guides/" class="post-card__read-more">Explore all →</a>
-    </div>
+
   </div><!-- /.page-wrap -->
 
   <!-- ── CONVERSATIONAL SUMMARY SCRIPT ── -->

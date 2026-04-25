@@ -22,6 +22,7 @@ seo:
   published_time: "2026-04-23T09:00:00"
   modified_time: "2026-04-23T09:00:00"
   keywords: "AI-native learning, microlearning, adaptive assessments, enterprise learning, intelligent education, Examatics, edtech, future of learning"
+  summary: "Point one | Point two | Point three"
 ---
 # The Future of Learning Is AI-Native
 
