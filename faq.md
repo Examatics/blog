@@ -1,3 +1,4 @@
+---
 layout: faq-list
 title: "Frequently Asked Questions"
 description: "Browse answers to common questions about Examatics, exam preparation, and our platform."
