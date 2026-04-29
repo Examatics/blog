@@ -6,7 +6,7 @@ url: "https://blog.examatics.ai"
 theme: null
 markdown: kramdown
 
-permalink: /:title/
+permalink: /articles/:title/
 
 exclude:
   - README.md
