@@ -280,6 +280,49 @@ justify-content: flex-start;
   font-size: 1rem;
 }
 
+.post-header {
+  margin-bottom: 28px;
+}
+
+.post-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 14px;
+}
+
+.study-callout {
+  margin: 32px 0 0;
+  padding: 24px 28px;
+  background: rgba(255,255,255,.62);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.study-callout p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.study-callout p + p {
+  margin-top: 14px;
+}
+
+.study-callout strong {
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.study-callout em {
+  display: block;
+  color: var(--secondary);
+  font-size: .96rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: .2px;
+}
+
 .post-meta {
   display: flex;
   align-items: center;
@@ -598,6 +641,7 @@ justify-content: flex-start;
 @media (max-width: 640px) {
   .header-nav { gap: 14px; }
   .content-pane { padding: 24px 20px; }
+  .study-callout { padding: 20px; }
   .card-grid { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-nav { justify-content: center; }

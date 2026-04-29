@@ -1,0 +1,48 @@
+# .gitignore for Jekyll (GitHub Pages)
+
+# Site output
+_site/
+blog/_site/
+
+# Jekyll cache
+.jekyll-cache/
+.jekyll-metadata
+
+# Sass/SCSS cache
+.sass-cache/
+
+# Bundler config
+.bundle/
+vendor/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Node modules (if using JS tooling)
+node_modules/
+
+# Byebug command history (for Ruby debugging)
+.byebug_history
+
+# VS Code settings
+.vscode/
+
+# Ruby environment
+.ruby-version
+.ruby-gemset
+
+# Other
+*.gem
+*.pid
+
+# Ignore drafts if present
+_drafts/
