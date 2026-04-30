@@ -16,7 +16,7 @@ tags:
 seo:
   title: "Why AI‑Native Learning Matters — The Examatics Perspective"
   description: "Explore the strategic shift toward AI‑native learning systems and how Examatics enables continuous, personalized, and measurable learning for modern organizations."
-  canonical: "https://examatics.blog/guides/"
+  canonical: "https://examatics.blog/articles"
   image: "/assets/images/examatics-og.png"
   type: "article"
   author: "Examatics"
