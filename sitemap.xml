@@ -1,128 +1,48 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Home page -->
+{% assign default_changefreq = "monthly" %}
+{% assign default_priority = "0.8" %}
+{% assign emitted_urls = "|" %}
+{% assign site_pages = site.pages | where_exp: "item", "item.name != 'sitemap.xml' and item.sitemap != false and item.url != nil and item.url != ''" | sort: "url" %}
+{% for page in site_pages %}
+{% assign normalized_url = page.url | replace: 'index.html', '' %}
+{% capture page_key %}|{{ normalized_url }}|{% endcapture %}
+{% unless emitted_urls contains page_key %}
   <url>
-    <loc>https://blog.examatics.ai/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>{{ site.url }}{{ site.baseurl }}{{ normalized_url }}</loc>
+    <changefreq>{% if page.url == '/' %}weekly{% else %}{{ page.sitemap.changefreq | default: default_changefreq }}{% endif %}</changefreq>
+    <priority>{% if page.url == '/' %}1.0{% else %}{{ page.sitemap.priority | default: default_priority }}{% endif %}</priority>
   </url>
-  <!-- Guides page -->
+{% assign emitted_urls = emitted_urls | append: normalized_url | append: '|' %}
+{% endunless %}
+{% endfor %}
+{% assign posts = site.posts | sort: "url" %}
+{% for post in posts %}
+{% capture post_key %}|{{ post.url }}|{% endcapture %}
+{% unless emitted_urls contains post_key %}
   <url>
-    <loc>https://blog.examatics.ai/guides</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>{{ site.url }}{{ site.baseurl }}{{ post.url }}</loc>
+    <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    <changefreq>{{ post.sitemap.changefreq | default: default_changefreq }}</changefreq>
+    <priority>{{ post.sitemap.priority | default: "0.9" }}</priority>
   </url>
-  <!-- FAQ page -->
+{% assign emitted_urls = emitted_urls | append: post.url | append: '|' %}
+{% endunless %}
+{% endfor %}
+{% assign faq_entries = site.faq | sort: "url" %}
+{% for entry in faq_entries %}
+{% capture entry_key %}|{{ entry.url }}|{% endcapture %}
+{% unless emitted_urls contains entry_key %}
   <url>
-    <loc>https://blog.examatics.ai/faq</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>{{ site.url }}{{ site.baseurl }}{{ entry.url }}</loc>
+    <lastmod>{{ entry.date | default: site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>{{ entry.sitemap.changefreq | default: default_changefreq }}</changefreq>
+    <priority>{{ entry.sitemap.priority | default: "0.7" }}</priority>
   </url>
-  <!-- About page -->
-  <url>
-    <loc>https://blog.examatics.ai/about</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <!-- Blog posts -->
-  <url>
-    <loc>https://blog.examatics.ai/articles/why-wrong-answers-are-your-most-valuable-study-tool</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/spaced-repetition-for-exam-prep-the-science-of-learning-that-sticks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/beyond-mock-test-scores-how-to-build-a-personalized-learning-roadmap</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/the-parents-guide-to-understanding-your-childs-exam-preparation-progress</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/the-students-guide-to-effective-mobile-first-exam-preparation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/microlearning-vs-marathon-study-sessions-which-actually-works</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/the-complete-guide-to-microlearning-for-competitive-exams-in-india</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/growth-oriented-assessment-what-every-upsc-aspirant-should-know</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/5-minute-practice-sessions-that-actually-move-the-needle-on-exam-day</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/the-examaticsai-story-building-the-learning-intelligence-layer-for-indias-next-billion-learners</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/exam-preparation-in-2026-why-ai-powered-platforms-are-replacing-static-question-banks</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/the-educators-guide-to-ai-powered-student-assessment-and-analytics</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/from-cramming-to-understanding-how-examaticsai-builds-lasting-knowledge</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/how-to-prepare-for-competitive-exams-from-a-tier-3-town-using-just-your-phone</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/how-comparative-benchmarking-helps-you-know-where-you-stand-among-aspirants</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/how-to-use-assessment-data-to-study-what-actually-matters</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/ai-vs-coaching-centers-why-intelligent-practice-is-the-future-of-exam-prep</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/how-ai-practice-adapts-to-your-learning-style-explained-simply</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/study-smarter-not-harder-how-ai-identifies-your-weak-topics-and-fixes-them</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://blog.examatics.ai/articles/how-adaptive-practice-changes-the-way-you-prepare-for-upsc-ssc-and-banking-exams</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+{% assign emitted_urls = emitted_urls | append: entry.url | append: '|' %}
+{% endunless %}
+{% endfor %}
 </urlset>
